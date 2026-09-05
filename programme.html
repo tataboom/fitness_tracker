@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Eighty Kilos of Iron</title>
+<meta name="description" content="The training programme behind Iron Logbook: sessions, loading, progression, and the reasoning.">
+<meta name="theme-color" content="#131719">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Spectral:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{color-scheme:light dark}
+img{max-width:100%}
+:root{
+  --bg:#E7EAE9; --surface:#F8F9F9; --surface-2:#DCE1E0; --ink:#14181A;
+  --ink-2:#576165; --ink-3:#7B8588; --rule:#C5CCCB;
+  --accent:#9E6416; --steel:#2B5163; --flag:#8B3728;
+  --flag-soft:#F1DCD7; --accent-soft:#EFE1C9;
+  --fd:"Oswald","Arial Narrow",sans-serif;
+  --fb:"Spectral",Georgia,"Times New Roman",serif;
+  --fm:"IBM Plex Mono",ui-monospace,"Courier New",monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#131719; --surface:#1C2225; --surface-2:#252C30; --ink:#E9EDEC;
+  --ink-2:#97A2A6; --ink-3:#778286; --rule:#2E373B;
+  --accent:#D9973A; --steel:#79ABBE; --flag:#DE8570;
+  --flag-soft:#38231E; --accent-soft:#382C1A;
+}}
+:root[data-theme="dark"]{
+  --bg:#131719; --surface:#1C2225; --surface-2:#252C30; --ink:#E9EDEC;
+  --ink-2:#97A2A6; --ink-3:#778286; --rule:#2E373B;
+  --accent:#D9973A; --steel:#79ABBE; --flag:#DE8570;
+  --flag-soft:#38231E; --accent-soft:#382C1A;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--fb);font-size:16px;line-height:1.6;margin:0;-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding:32px 18px 80px;display:flex;flex-direction:column;gap:44px}
+.prose{max-width:66ch}
+h1,h2,h3,.lab{font-family:var(--fd);text-transform:uppercase}
+h1{font-size:clamp(36px,8vw,62px);font-weight:700;line-height:.95;letter-spacing:-.01em;margin:0;text-wrap:balance}
+h2{font-size:clamp(20px,3.4vw,25px);font-weight:600;letter-spacing:.02em;margin:0}
+h3{font-size:15px;font-weight:600;letter-spacing:.04em;margin:0}
+p{margin:0 0 12px}p:last-child{margin-bottom:0}
+.lab{font-size:11.5px;font-weight:600;letter-spacing:.16em;color:var(--accent)}
+.mono{font-family:var(--fm);font-variant-numeric:tabular-nums}
+strong{font-weight:600}em{font-style:italic}
+a{color:var(--accent)}
+header.mast{display:flex;flex-direction:column;gap:16px;border-bottom:3px solid var(--ink);padding-bottom:20px}
+.sub{font-size:17px;color:var(--ink-2);max-width:56ch;margin:0}
+.spec{display:flex;flex-wrap:wrap;gap:0;border:1px solid var(--rule);background:var(--surface);border-radius:2px;overflow:hidden;margin:0}
+.spec div{flex:1 1 120px;padding:10px 13px;border-right:1px solid var(--rule)}
+.spec div:last-child{border-right:0}
+.spec dt{font-family:var(--fd);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin:0 0 3px}
+.spec dd{font-family:var(--fm);font-size:14.5px;font-weight:500;margin:0;font-variant-numeric:tabular-nums}
+section{display:flex;flex-direction:column;gap:15px}
+.head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--rule);padding-bottom:8px}
+.head p{color:var(--ink-2);font-size:14px;margin:0}
+.facts{display:flex;flex-direction:column;gap:18px;border-left:3px solid var(--flag);padding:4px 16px;background:linear-gradient(90deg,var(--flag-soft),transparent 62%);border-radius:0 2px 2px 0}
+.facts h3{color:var(--flag);font-size:15px;margin-bottom:5px}
+.safe{border-left:3px solid var(--accent);padding:14px 16px;background:linear-gradient(90deg,var(--accent-soft),transparent 70%);border-radius:0 2px 2px 0}
+.safe h3{color:var(--accent);margin-bottom:8px}
+.week{display:grid;grid-template-columns:repeat(auto-fit,minmax(104px,1fr));gap:8px;margin:0}
+.day{background:var(--surface);border:1px solid var(--rule);border-top:3px solid var(--steel);border-radius:2px;padding:10px 11px}
+.day.rest{border-top-color:var(--rule);background:transparent}
+.day dt{font-family:var(--fm);font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);margin:0 0 4px}
+.day dd{font-family:var(--fd);font-size:14px;font-weight:600;text-transform:uppercase;margin:0;line-height:1.25}
+.day.rest dd{color:var(--ink-2);font-weight:500}
+.sessions{display:flex;flex-direction:column;gap:18px}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:3px;overflow:hidden}
+.card-head{border-bottom:1px solid var(--rule);padding:12px 16px;background:var(--surface-2);display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.card-head h2{font-size:20px}
+.card-head .tag{font-family:var(--fm);font-size:12px;color:var(--ink-2)}
+ol.ex{list-style:none;margin:0;padding:0;counter-reset:x}
+ol.ex li{counter-increment:x;padding:11px 16px 11px 42px;border-bottom:1px solid var(--rule);position:relative}
+ol.ex li:last-child{border-bottom:0}
+ol.ex li::before{content:counter(x);position:absolute;left:16px;top:12px;font-family:var(--fm);font-size:12px;font-weight:600;color:var(--accent)}
+.top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.nm{font-family:var(--fd);font-size:16px;font-weight:500;letter-spacing:.015em;text-transform:uppercase;line-height:1.2}
+.rx{font-family:var(--fm);font-size:13.5px;font-weight:500;white-space:nowrap;font-variant-numeric:tabular-nums}
+.rx span{color:var(--ink-3);font-weight:400}
+.nt{font-size:14px;color:var(--ink-2);margin:5px 0 0;max-width:62ch}
+.scroll{overflow-x:auto;border:1px solid var(--rule);border-radius:2px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:380px;font-family:var(--fm);font-size:13.5px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:8px 13px;border-bottom:1px solid var(--rule)}
+th{font-family:var(--fd);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);background:var(--surface-2)}
+tr:last-child td{border-bottom:0}
+td.k{color:var(--accent);font-weight:600}
+ul.plain{margin:0;padding-left:18px}
+ul.plain li{margin-bottom:8px}ul.plain li:last-child{margin-bottom:0}
+.ramp{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.ramp div{border-top:2px solid var(--accent);padding-top:9px}
+.ramp .lab{display:block;margin-bottom:4px}
+.backlink{font-family:var(--fm);font-size:13px}
+@media (max-width:520px){.wrap{padding:24px 14px 60px;gap:36px}ol.ex li{padding:10px 14px 10px 38px}ol.ex li::before{left:14px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <span class="lab">Home programme &middot; Four days a week</span>
+  <h1>Eighty Kilos<br>of Iron</h1>
+  <p class="sub">An upper/lower split built around one adjustable bench, an 8.7&nbsp;kg bar and 80&nbsp;kg of plates. Written for a 100&nbsp;kg starting weight, a fat-loss goal, training alone with no safety catches.</p>
+  <dl class="spec">
+    <div><dt>You</dt><dd>100 kg &middot; 1.77 m</dd></div>
+    <div><dt>Bar</dt><dd>8.7 kg &middot; 175 cm</dd></div>
+    <div><dt>Plates</dt><dd>80 kg total</dd></div>
+    <div><dt>Handles</dt><dd>2 &times; 2 kg</dd></div>
+    <div><dt>Stands</dt><dd>110&ndash;123 cm</dd></div>
+  </dl>
+  <p class="backlink"><a href="index.html">&#8592; Back to the logbook</a></p>
+</header>
+
+<section>
+  <div class="head"><h2>Read this first</h2><p>Four things that decide whether this works.</p></div>
+  <div class="facts">
+    <div class="prose">
+      <h3>You cannot choose where the fat comes off</h3>
+      <p>No exercise burns fat from the area it works. Crunches do not flatten a stomach and bench press does not clear a chest. Fat leaves the whole body at once, in an order your genetics set. For many men the belly and flanks are among the last to change, and the chest varies from person to person. Expect your face, arms and legs to change first. That is normal, not failure.</p>
+    </div>
+    <div class="prose">
+      <h3>Soft chest fat and a firm disc are different things</h3>
+      <p>Soft tissue spreading toward the armpit is fat, and it goes when you lose fat. A firm, rubbery disc directly behind the nipple, sometimes tender or on one side only, is glandular tissue, not fat, and it does not respond to training or dieting at any bodyweight. If you can feel a distinct disc there, raise it with your GP now rather than after a year of work. It is common and treatable, and knowing which you have tells you what to expect.</p>
+    </div>
+    <div class="prose">
+      <h3>The kitchen removes the layer, the bar builds what is under it</h3>
+      <p>Pressing builds the muscle beneath the fat, which changes the shape of the chest. It does not remove the layer over it. Both have to happen, from two different places: the deficit does the first, the bar does the second.</p>
+    </div>
+    <div class="prose">
+      <h3>This is why the iron matters for fat loss</h3>
+      <p>In a deficit you lose fat and muscle together. Training hard against a load is the signal that tells your body to hold the muscle and take the difference from fat instead. That is the whole job of the equipment: it decides whether you end up slim and solid, or a smaller version of the same shape.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>The week</h2><p>Two upper, two lower. Walk on the others.</p></div>
+  <dl class="week">
+    <div class="day"><dt>Mon</dt><dd>Upper A</dd></div>
+    <div class="day"><dt>Tue</dt><dd>Lower A</dd></div>
+    <div class="day rest"><dt>Wed</dt><dd>Walk 45 min</dd></div>
+    <div class="day"><dt>Thu</dt><dd>Upper B</dd></div>
+    <div class="day"><dt>Fri</dt><dd>Lower B</dd></div>
+    <div class="day rest"><dt>Sat</dt><dd>Walk 45 min</dd></div>
+    <div class="day rest"><dt>Sun</dt><dd>Off</dd></div>
+  </dl>
+  <div class="prose"><p>Sessions run 55 to 70 minutes. The logbook eases each session type in over its first two outings (2 sets, then 3, then full), so training early never forces a light week later. If a week goes wrong, drop Lower&nbsp;B first and carry on where you left off.</p></div>
+</section>
+
+<section>
+  <div class="head"><h2>Warm-up, every session</h2><p>Five minutes. Never logged.</p></div>
+  <div class="prose">
+    <ul class="plain">
+      <li>Two minutes of easy movement: arm circles, hip hinges, bodyweight squats, a few press-ups.</li>
+      <li>On the first big lift only: the empty bar for 10, then about half your working weight for 6, then three-quarters for 3.</li>
+      <li>Then start your first working set. Warm-up sets do not go in the logbook, only working sets do.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>The sessions</h2><p>In order. The first two lifts are the ones that matter.</p></div>
+  <div class="sessions">
+
+    <article class="card">
+      <div class="card-head"><h2>Upper A</h2><span class="tag">horizontal push &amp; pull</span></div>
+      <ol class="ex">
+        <li><div class="top"><span class="nm">Barbell bench press</span><span class="rx">4 &times; 6&ndash;8 <span>&middot; 2&ndash;3 min</span></span></div><p class="nt">Read the solo-bench protocol below before your first session.</p></li>
+        <li><div class="top"><span class="nm">Barbell bent-over row</span><span class="rx">4 &times; 8&ndash;10 <span>&middot; 2 min</span></span></div><p class="nt">Hinge to about 45 degrees, pull to the bottom of the ribs. Match your bench weight over time.</p></li>
+        <li><div class="top"><span class="nm">Incline dumbbell press</span><span class="rx">3 &times; 10&ndash;12 <span>&middot; 90 s</span></span></div></li>
+        <li><div class="top"><span class="nm">Inverted row</span><span class="rx">3 &times; max <span>&middot; 90 s</span></span></div><p class="nt">Bar in the stands at 110 cm, check both cups are seated, pull your chest to it. Your pull-up substitute.</p></li>
+        <li><div class="top"><span class="nm">Dumbbell lateral raise</span><span class="rx">3 &times; 12&ndash;15 <span>&middot; 60 s</span></span></div></li>
+        <li><div class="top"><span class="nm">Preacher curl</span><span class="rx">3 &times; 10&ndash;12 <span>&middot; 60 s</span></span></div></li>
+        <li><div class="top"><span class="nm">Overhead dumbbell extension</span><span class="rx">3 &times; 10&ndash;12 <span>&middot; 60 s</span></span></div><p class="nt">Kinder on the shoulders than the old bench dip, and it hits the triceps through a full stretch.</p></li>
+      </ol>
+    </article>
+
+    <article class="card">
+      <div class="card-head"><h2>Lower A</h2><span class="tag">squat pattern &amp; core</span></div>
+      <ol class="ex">
+        <li><div class="top"><span class="nm">Bulgarian split squat</span><span class="rx">3 &times; 8&ndash;10 <span>/ leg &middot; 2 min</span></span></div><p class="nt">First now, while you are fresh, with a dumbbell in each hand. The best leg exercise you have without a rack. Start bodyweight only.</p></li>
+        <li><div class="top"><span class="nm">Goblet squat</span><span class="rx">4 &times; 12&ndash;15 <span>&middot; 90 s</span></span></div><p class="nt">Higher reps here: a single dumbbell runs out of load first, so use it for volume, not for a max.</p></li>
+        <li><div class="top"><span class="nm">Dumbbell Romanian deadlift</span><span class="rx">4 &times; 10&ndash;12 <span>&middot; 90 s</span></span></div></li>
+        <li><div class="top"><span class="nm">Step-up onto bench</span><span class="rx">3 &times; 10 <span>/ leg &middot; 60 s</span></span></div></li>
+        <li><div class="top"><span class="nm">Barbell hip thrust</span><span class="rx">3 &times; 12&ndash;15 <span>&middot; 90 s</span></span></div><p class="nt">Shoulder blades on the bench edge, towel under the bar until you buy a pad.</p></li>
+        <li><div class="top"><span class="nm">Standing calf raise</span><span class="rx">4 &times; 15&ndash;20 <span>&middot; 45 s</span></span></div></li>
+        <li><div class="top"><span class="nm">Plank</span><span class="rx">3 &times; 30&ndash;60 s <span>&middot; 45 s</span></span></div></li>
+      </ol>
+    </article>
+
+    <article class="card">
+      <div class="card-head"><h2>Upper B</h2><span class="tag">vertical push &amp; pull</span></div>
+      <ol class="ex">
+        <li><div class="top"><span class="nm">Standing overhead press</span><span class="rx">4 &times; 6&ndash;8 <span>&middot; 2&ndash;3 min</span></span></div><p class="nt">Quarter-squat to drive the bar out of the stands, step back, press. If re-racking feels shaky, lower to the floor.</p></li>
+        <li><div class="top"><span class="nm">Single-arm dumbbell row</span><span class="rx">4 &times; 10&ndash;12 <span>/ side &middot; 90 s</span></span></div><p class="nt">Heaviest single dumbbell you can build. This is the lift that will want the plates.</p></li>
+        <li><div class="top"><span class="nm">Flat dumbbell press</span><span class="rx">3 &times; 10&ndash;12 <span>&middot; 90 s</span></span></div><p class="nt">The safe way to press to failure: you can drop these to your sides. Use this, not the barbell, to find your limit.</p></li>
+        <li><div class="top"><span class="nm">Dumbbell pullover</span><span class="rx">3 &times; 12&ndash;15 <span>&middot; 60 s</span></span></div></li>
+        <li><div class="top"><span class="nm">Inverted row, feet elevated</span><span class="rx">3 &times; max <span>&middot; 90 s</span></span></div><p class="nt">Feet on a chair to make it harder than Monday. Progress by elevation, not weight.</p></li>
+        <li><div class="top"><span class="nm">Hammer curl</span><span class="rx">3 &times; 12 <span>&middot; 60 s</span></span></div></li>
+        <li><div class="top"><span class="nm">Lying triceps extension</span><span class="rx">3 &times; 10&ndash;12 <span>&middot; 60 s</span></span></div><p class="nt">Bar to the forehead, elbows still, light. Keep it away from your face by starting the bar slightly behind your head.</p></li>
+      </ol>
+    </article>
+
+    <article class="card">
+      <div class="card-head"><h2>Lower B</h2><span class="tag">hinge pattern &amp; carries</span></div>
+      <ol class="ex">
+        <li><div class="top"><span class="nm">Barbell Romanian deadlift</span><span class="rx">4 &times; 8&ndash;10 <span>&middot; 2&ndash;3 min</span></span></div><p class="nt">Your plates sit about 13 cm off the floor, so the first rep is a deadlift: stand it up, brace, then hinge. Heaviest lift of the week.</p></li>
+        <li><div class="top"><span class="nm">Reverse lunge</span><span class="rx">3 &times; 10 <span>/ leg &middot; 90 s</span></span></div></li>
+        <li><div class="top"><span class="nm">Single-leg glute bridge</span><span class="rx">3 &times; 12 <span>/ side &middot; 60 s</span></span></div></li>
+        <li><div class="top"><span class="nm">Goblet squat, 3-second lower</span><span class="rx">3 &times; 12 <span>&middot; 90 s</span></span></div></li>
+        <li><div class="top"><span class="nm">Farmer&rsquo;s carry</span><span class="rx">4 &times; 40 m <span>&middot; 60 s</span></span></div><p class="nt">Heaviest dumbbells you can build, walk until the grip fails. Conditioning, core and grip with no joint impact.</p></li>
+        <li><div class="top"><span class="nm">Dead bug</span><span class="rx">3 &times; 10 <span>/ side &middot; 45 s</span></span></div></li>
+      </ol>
+    </article>
+
+  </div>
+  <div class="prose"><p class="nt">The barbell good morning was cut: it duplicated the two Romanian deadlifts and carried the most risk for the least return of anything in the plan.</p></div>
+</section>
+
+<section>
+  <div class="head"><h2>The solo bench protocol</h2><p>No catches, no spotter. Read once, follow every time.</p></div>
+  <div class="safe prose">
+    <h3>How not to get pinned</h3>
+    <ul class="plain">
+      <li><strong>Set the stands high.</strong> You should lift the bar off with your arms almost straight, then lower it to your chest. If you have to press it up out of the stands, they are too low.</li>
+      <li><strong>No collars on the bench.</strong> A failed rep has to be able to tip and let the plates slide off one end. Practise that escape once with the empty bar so it is not new when you need it.</li>
+      <li><strong>Leave one in the tank.</strong> Rep 8 is never a grind. If a rep would be a maximal fight, that was your last rep. Racking is for when you have finished, not when you have failed.</li>
+      <li><strong>Find your limit on dumbbells, not the bar.</strong> The flat dumbbell press in Upper B is where you push to true failure, because you can drop the weights to your sides.</li>
+    </ul>
+    <p>When the squat rack with safety arms arrives next year, this all gets easier and you can bench heavier with a clear head.</p>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Loading</h2><p>Your bar is 8.7 kg, not 20. Every number starts there.</p></div>
+  <div class="prose"><p>A standard bar is not an Olympic bar. &ldquo;40 kg on the bench&rdquo; means 8.7 kg of bar plus 31.3 kg of plates, not 20 plus 20. Your set: <span class="mono">4 &times; 10 kg, 4 &times; 5 kg, 8 &times; 2 kg, 4 &times; 1 kg</span>.</p></div>
+  <div class="scroll"><table>
+    <thead><tr><th>Bar total</th><th>Per side</th><th>Uses</th></tr></thead>
+    <tbody>
+      <tr><td class="k">8.7 kg</td><td>bare bar</td><td>&mdash;</td></tr>
+      <tr><td class="k">10.7 kg</td><td>1</td><td>2 &times; 1 kg</td></tr>
+      <tr><td class="k">12.7 kg</td><td>2</td><td>2 &times; 2 kg</td></tr>
+      <tr><td class="k">18.7 kg</td><td>5</td><td>2 &times; 5 kg</td></tr>
+      <tr><td class="k">28.7 kg</td><td>10</td><td>2 &times; 10 kg</td></tr>
+      <tr><td class="k">38.7 kg</td><td>10 + 5</td><td>2 &times; 10, 2 &times; 5</td></tr>
+      <tr><td class="k">48.7 kg</td><td>10 + 10</td><td>all 4 &times; 10 kg</td></tr>
+      <tr><td class="k">88.7 kg</td><td>everything</td><td>the whole set</td></tr>
+    </tbody>
+  </table></div>
+  <div class="prose"><p><strong>Smallest jump is 2 kg</strong>, one 1 kg plate each side. Those four small plates are the most valuable thing in the box: they let you add weight weekly instead of every second month. Do not lose them.</p>
+  <p>Matched dumbbell pairs, per hand, weights below are <em>each</em> dumbbell:</p></div>
+  <div class="scroll"><table>
+    <thead><tr><th>Each hand</th><th>Per side of handle</th><th>Uses (pair)</th></tr></thead>
+    <tbody>
+      <tr><td class="k">4 kg</td><td>1</td><td>4 &times; 1 kg</td></tr>
+      <tr><td class="k">6 kg</td><td>2</td><td>4 &times; 2 kg</td></tr>
+      <tr><td class="k">8 kg</td><td>2 + 1</td><td>4 &times; 2, 4 &times; 1 kg</td></tr>
+      <tr><td class="k">10 kg</td><td>2 + 2</td><td>all 8 &times; 2 kg</td></tr>
+      <tr><td class="k">12 kg</td><td>5</td><td>all 4 &times; 5 kg</td></tr>
+      <tr><td class="k">14 kg</td><td>5 + 1</td><td>4 &times; 5, 4 &times; 1 kg</td></tr>
+      <tr><td class="k">16 kg</td><td>5 + 2</td><td>4 &times; 5, 4 &times; 2 kg</td></tr>
+      <tr><td class="k">20 kg</td><td>5 + 2 + 2</td><td>4 &times; 5, 8 &times; 2 kg</td></tr>
+      <tr><td class="k">22 kg</td><td>10</td><td>all 4 &times; 10 kg</td></tr>
+    </tbody>
+  </table></div>
+  <div class="prose"><p>A 22 kg dumbbell on a 35 cm handle gets awkward to balance, so about 20 kg per hand is the working ceiling. When single-arm rows outgrow it, that is the signal to buy another pair of 5s.</p></div>
+</section>
+
+<section>
+  <div class="head"><h2>Progression</h2><p>The part that stops it being boring.</p></div>
+  <div class="prose">
+    <p>Visible progress keeps training interesting, not novelty. The exercises stay put for twelve weeks so you can actually see yourself getting stronger.</p>
+    <p><strong>Double progression.</strong> Every lift has a rep range. Pick a load you can hit the bottom of the range with, then add reps week to week on the same weight. When you hit the <em>top</em> of the range on <em>every</em> set, add the smallest jump and drop back to the bottom. The logbook does this maths for you and offers the jump with one tap.</p>
+    <p><strong>When a lift stalls.</strong> Three sessions stuck at the same weight and reps means back off: drop the weight about 10 percent and build back up. A stall is information, not failure.</p>
+    <p><strong>Week 8 is a deload.</strong> It lands near Christmas. Cut every working set to 2 and keep the weights light. You will come back stronger, not weaker.</p>
+    <p><strong>End of week 12.</strong> Take stock: what went up, what stalled, how the mirror and the tape look. That review writes block two, usually the same shape with the lifts that stalled swapped or re-approached. By then the squat rack should be close.</p>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Eating, briefly</h2><p>General guidance, not a prescription.</p></div>
+  <div class="prose">
+    <p>The training decides what you keep. The food decides what you lose.</p>
+    <ul class="plain">
+      <li><strong>Protein, about 150 g a day.</strong> The one number most people miss. It protects muscle in a deficit. Spread it across the day.</li>
+      <li><strong>Maintenance is roughly 2,700 to 2,900 kcal for you.</strong> Start eating near 2,300, which is a moderate deficit, and hold it steady.</li>
+      <li><strong>Let the scale steer, not the calculator.</strong> Under 0.3 kg a week averaged over three weeks: cut another 200. Over 1 kg a week: add 200 back, you are losing it too fast to hold muscle.</li>
+      <li><strong>8,000 to 10,000 steps a day.</strong> At 100 kg this outweighs any cardio machine and costs your knees nothing. Malta&rsquo;s promenades are built for it.</li>
+    </ul>
+    <p>Honest timeline: 100 kg to around 82 kg is about eight to twelve months. It is the same months either way.</p>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Track four things</h2><p>The logbook does the rest.</p></div>
+  <div class="prose"><ul class="plain">
+    <li><strong>Load and reps for every working set.</strong> Non-negotiable. Progression does not work from memory.</li>
+    <li><strong>Bodyweight every morning, same conditions.</strong> Read only the weekly average. Daily swings of 1 to 2 kg are water.</li>
+    <li><strong>Waist at the navel, once a week.</strong> It keeps moving when the scale stalls, and for your goal it is the more honest number.</li>
+    <li><strong>A photo every four weeks, same light and spot.</strong> You will not see day-to-day change. You will see it across three photos.</li>
+  </ul></div>
+  <p class="backlink"><a href="index.html">&#8592; Back to the logbook</a></p>
+</section>
+
+</div>
+</body>
+</html>

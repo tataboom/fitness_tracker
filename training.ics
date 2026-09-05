@@ -1,0 +1,118 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Iron Logbook//Eighty Kilos of Iron//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Training
+X-WR-CALDESC:Four-day upper/lower programme. Log each session in Iron Logbo
+ ok.
+BEGIN:VEVENT
+UID:ironlog-upper-a@eightykilos
+DTSTAMP:20260904T120000Z
+DTSTART:20261102T180000
+DTEND:20261102T191500
+RRULE:FREQ=WEEKLY;BYDAY=MO
+SUMMARY:Upper A - horizontal push & pull
+LOCATION:Home
+DESCRIPTION:1. Barbell bench press 4x6-8\n2. Barbell bent-over row 4x8-10\n
+ 3. Incline dumbbell press 3x10-12\n4. Inverted row 3xmax\n5. Dumbbell late
+ ral raise 3x12-15\n6. Preacher curl 3x10-12\n7. Overhead dumbbell extensio
+ n 3x10-12\n\nBench: unrack with arms almost straight\, no collars\, rep 8 
+ never a grind.\n\nLog it in Iron Logbook.
+BEGIN:VALARM
+TRIGGER:-PT45M
+ACTION:DISPLAY
+DESCRIPTION:Upper A in 45 minutes
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ironlog-lower-a@eightykilos
+DTSTAMP:20260904T120000Z
+DTSTART:20261103T180000
+DTEND:20261103T191500
+RRULE:FREQ=WEEKLY;BYDAY=TU
+SUMMARY:Lower A - squat pattern & core
+LOCATION:Home
+DESCRIPTION:1. Bulgarian split squat 3x8-10 per leg\n2. Goblet squat 4x12-1
+ 5\n3. Dumbbell Romanian deadlift 4x10-12\n4. Step-up onto bench 3x10 per l
+ eg\n5. Barbell hip thrust 3x12-15\n6. Standing calf raise 4x15-20\n7. Plan
+ k 3x30-60s\n\nStart Bulgarian split squats bodyweight only.\n\nLog it in I
+ ron Logbook.
+BEGIN:VALARM
+TRIGGER:-PT45M
+ACTION:DISPLAY
+DESCRIPTION:Lower A in 45 minutes
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ironlog-upper-b@eightykilos
+DTSTAMP:20260904T120000Z
+DTSTART:20261105T180000
+DTEND:20261105T191500
+RRULE:FREQ=WEEKLY;BYDAY=TH
+SUMMARY:Upper B - vertical push & pull
+LOCATION:Home
+DESCRIPTION:1. Standing overhead press 4x6-8\n2. Single-arm dumbbell row 4x
+ 10-12 per side\n3. Flat dumbbell press 3x10-12\n4. Dumbbell pullover 3x12-
+ 15\n5. Inverted row feet elevated 3xmax\n6. Hammer curl 3x12\n7. Lying tri
+ ceps extension 3x10-12\n\nFlat dumbbell press is where you push to real fa
+ ilure.\n\nLog it in Iron Logbook.
+BEGIN:VALARM
+TRIGGER:-PT45M
+ACTION:DISPLAY
+DESCRIPTION:Upper B in 45 minutes
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ironlog-lower-b@eightykilos
+DTSTAMP:20260904T120000Z
+DTSTART:20261106T180000
+DTEND:20261106T191500
+RRULE:FREQ=WEEKLY;BYDAY=FR
+SUMMARY:Lower B - hinge pattern & carries
+LOCATION:Home
+DESCRIPTION:1. Barbell Romanian deadlift 4x8-10\n2. Reverse lunge 3x10 per 
+ leg\n3. Single-leg glute bridge 3x12 per side\n4. Goblet squat 3s lower 3x
+ 12\n5. Farmer's carry 4x40m\n6. Dead bug 3x10 per side\n\nRDL: stand the b
+ ar up first\, brace\, then hinge.\n\nLog it in Iron Logbook.
+BEGIN:VALARM
+TRIGGER:-PT45M
+ACTION:DISPLAY
+DESCRIPTION:Lower B in 45 minutes
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ironlog-walk@eightykilos
+DTSTAMP:20260904T120000Z
+DTSTART:20261104T180000
+DTEND:20261104T184500
+RRULE:FREQ=WEEKLY;BYDAY=WE,SA
+SUMMARY:Walk 45 minutes
+LOCATION:Outside
+DESCRIPTION:Brisk walk. At 100 kg this does more for total energy burn than
+  any cardio machine\, and costs your knees nothing.\n\nLog bodyweight in I
+ ron Logbook while you are at it.
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Walk in 30 minutes
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ironlog-review@eightykilos
+DTSTAMP:20260904T120000Z
+DTSTART:20261201T190000
+DTEND:20261201T191500
+RRULE:FREQ=MONTHLY;BYMONTHDAY=1
+SUMMARY:Back up training data and get a review
+DESCRIPTION:In Iron Logbook open Data and tap Back up (or Copy as text)\, t
+ hen hand the file to a personal Claude chat.\n\nAsk for: progression check
+ \, stalled lifts\, whether the deficit is costing muscle\, and what to cha
+ nge next month.
+BEGIN:VALARM
+TRIGGER:-PT60M
+ACTION:DISPLAY
+DESCRIPTION:Monthly training review
+END:VALARM
+END:VEVENT
+END:VCALENDAR

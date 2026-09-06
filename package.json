@@ -1,0 +1,8 @@
+{
+  "name": "iron-logbook",
+  "version": "2.0.0",
+  "private": true,
+  "description": "An offline home-gym training companion",
+  "scripts": {"start": "node dev-server.js", "test": "node --test"},
+  "engines": {"node": ">=20"}
+}
